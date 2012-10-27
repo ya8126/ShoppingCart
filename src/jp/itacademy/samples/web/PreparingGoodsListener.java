@@ -26,16 +26,16 @@ public class PreparingGoodsListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent e) {
     	
-    	List<Goods> goods = new ArrayList<>();
+    	GoodsList goodsList = new GoodsList();
     	
-    	goods.add(new Goods(1001, "‚â‚­‚»‚¤", 8, 10));
-    	goods.add(new Goods(1002, "‚Ç‚­‚¯‚µ‚»‚¤", 10, 5));
-     	goods.add(new Goods(1003, "‚¹‚¢‚·‚¢", 20, 30));
-    	goods.add(new Goods(1004, "‚Ü‚ñ‚°‚Â‚»‚¤", 30, 0));
-     	goods.add(new Goods(1005, "‚µ‚©‚¹‚ñ‚×‚¢", 4980000, 1));
+    	goodsList.addList(new Goods(1001, "‚â‚­‚»‚¤", 8, 10));
+    	goodsList.addList(new Goods(1002, "‚Ç‚­‚¯‚µ‚»‚¤", 10, 5));
+    	goodsList.addList(new Goods(1003, "‚¹‚¢‚·‚¢", 20, 30));
+    	goodsList.addList(new Goods(1004, "‚Ü‚ñ‚°‚Â‚»‚¤", 30, 0));
+    	goodsList.addList(new Goods(1005, "‚µ‚©‚¹‚ñ‚×‚¢", 4980000, 1));
      	
      	ServletContext context = e.getServletContext();
-     	context.setAttribute("goods", goods);
+     	context.setAttribute("goodslist", goodsList);
     	
     }
 
@@ -45,7 +45,7 @@ public class PreparingGoodsListener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent e) {
     	
     	ServletContext context = e.getServletContext();
-    	context.removeAttribute("books");
+    	context.removeAttribute("goodslist");
     	
     }
 	

@@ -2,6 +2,7 @@ package jp.itacademy.samples.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class AddItemToCartServlet
  */
-@WebServlet("/AddItemToCartServlet")
+@WebServlet("/addItem")
 public class AddItemToCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,10 +38,22 @@ public class AddItemToCartServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		List<Detail> details = (List<Detail>) session.getAttribute("details");
-		if (details == null) {
-//			List<Detail> details = new ArrayList<>();
+		DetailList detailList = (DetailList) session.getAttribute("details");
+		if (detailList == null) {
+			detailList = new DetailList();
 		}
+		
+		int no = 0;
+		try{
+			no = Integer.parseInt(request.getParameter("no"));
+		}catch (Exception e){
+			
+		}
+		detailList.alterList(new Detail(no, 1));
+		session.setAttribute("detaillist", detailList);
+
+		response.setStatus(303);
+		response.setHeader("Location", "/WEB-INF/cart.jsp");
 	}
 
 }

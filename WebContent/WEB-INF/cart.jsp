@@ -28,15 +28,17 @@
 		<th>商品コード</th>
 		<th>商品名</th>
 		<th>価格</th>
-		<th>在庫状況</th>
-		<th>　</th>
+		<th>数量</th>
+		<th>金額</th>
 	</tr>
 	
-	<c:forEach var="goods" items="${goodslist.toArray()}">
+	<c:forEach var="goods" items="${detaillist.toArray()}">
 		<tr>
 			<td class="right">${goods.no}</td>
-			<td>${goods.name}</td>
-			<td class="right">${goods.price} G</td>
+			<td>${goodslist.searchList(goods.no).name}</td>
+			<td class="right">${goodslist.searchList(goods.no).price} G</td>
+			<td class="right">${goods.quantity}</td>
+			<td class="right">${goodslist.searchList(goods.no).price} G</td>
 			<td>
 				<c:choose>
 					<c:when test="${goods.stock >= 10}">在庫有り</c:when>

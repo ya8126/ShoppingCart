@@ -17,5 +17,9 @@ public class Detail {
 	public int getQuantity() {
 		return quantity;
 	}
+	
+	public int getAmount(int price){
+		return 
+	}
 
 }
